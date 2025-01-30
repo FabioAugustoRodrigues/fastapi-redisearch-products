@@ -5,7 +5,8 @@ WORKDIR /srv
 
 RUN apk add \
 	python3 \
-	py3-pip
+	py3-pip \
+    redis
 
 RUN pip3 install virtualenv && \
 	virtualenv .venv
@@ -14,7 +15,8 @@ RUN . /srv/.venv/bin/activate && \
 	pip install \
 	fastapi \
 	uvicorn \
-	mysql-connector-python \
+	redis \
+	redisearch \
 	python-dotenv \
 	pydantic \
 	pyjwt \
