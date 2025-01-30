@@ -1,0 +1,10 @@
+name: fastapi-redisearch-producs
+
+services:
+  python:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.Python.Dev
+    restart: unless-stopped
+    ports:
+      - 8400:8000
