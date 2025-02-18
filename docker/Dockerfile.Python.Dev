@@ -21,6 +21,7 @@ RUN . /srv/.venv/bin/activate && \
 	pydantic \
 	pyjwt \
 	passlib \
+	faker \
 	&& deactivate
 
 ENTRYPOINT . /srv/.venv/bin/activate && \

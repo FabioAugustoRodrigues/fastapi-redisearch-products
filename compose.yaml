@@ -11,9 +11,11 @@ services:
       - 8400:8000
     depends_on:
       - redis
+    volumes:
+      - ./output:/srv/output
 
   redis:
-    image: redis/redis-stack:latest  # Usando a imagem que inclui RedisSearch
+    image: redis/redis-stack:latest
     ports:
       - "6379:6379"
     healthcheck:
