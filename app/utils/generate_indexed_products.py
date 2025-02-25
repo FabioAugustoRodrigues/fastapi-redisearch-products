@@ -11,9 +11,9 @@ def import_csv_to_redisearch(csv_filename: str):
         next(reader)
         
         for idx, row in enumerate(reader):
-            description, supplier = row
+            id, description, supplier = row
             product = {"description": description, "supplier": supplier}
-            product_service.create_product(product)
+            product_service.create_product(id, product)
 
     print("CSV data successfully imported into RediSearch!")
 

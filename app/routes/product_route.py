@@ -3,15 +3,24 @@ from fastapi import APIRouter
 from ..schemas.product_schema import ProductRequest
 from ..services.product_service import ProductService
 
+import random
+
 router = APIRouter()
 product_service = ProductService()
 
 
-@router.post("/")
+@router.post("/", status_code=201)
 async def create_product(product: ProductRequest):
-    product_service.create_product(product.dict())
+    random_id = random.randint(1, 1000000)
+    product_service.create_product(random_id, product.dict())
 
-    return product
+    product_dict = {
+        "id": random_id,
+        "description": product.description,
+        "supplier": product.supplier
+    }
+
+    return product_dict
 
 @router.get("/")
 async def search_products(description: str):

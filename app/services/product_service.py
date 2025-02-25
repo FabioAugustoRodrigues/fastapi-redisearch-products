@@ -10,13 +10,13 @@ class ProductService:
         self.redis_connection = create_redis_connection()
         self.product_index = create_products_index(self.redis_connection)
 
-    def create_product(self, product: dict):
-        return self.product_index.redis.hset(self.generate_random_key(), mapping=product)
+    def create_product(self, id: int, product: dict):
+        return self.product_index.redis.hset(self.generate_key(id), mapping=product)
 
     def search_product_by_description(self, description: str):
         query_string = f'@description:({description}*)'
         query = Query(query_string).verbatim()
         return self.product_index.search(query)
 
-    def generate_random_key(self):
-        return "products:" + str(random.randint(100000, 999999))
+    def generate_key(self, id):
+        return "products:" + str(id)
